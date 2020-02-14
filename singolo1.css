@@ -76,3 +76,52 @@
 .menu__list li:last-child a::after {
   content: "";
 }
+/*slider*/
+.slider {
+  width: 100%;
+  background: #f06c64;
+  padding: 0 40px 4px;
+  display: flex;
+  height: 600px;
+  border-bottom: 6px solid #ea676b;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slider__iphone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 800px;
+}
+
+.iphone {
+  position: relative;
+} 
+
+.iphone-vertical {
+  left: 1.8px;
+  top: 1.5px
+}
+
+.iphone-horizontal {
+  right: 1.5px;
+  top: 1px
+}
+
+.slider__arrow {
+  position: relative;
+}
+
+.arrow-right {
+  top: 1.5px;
+}
+
+.arrow-left {
+  transform: rotate(180deg);
+  bottom: 2.5px;
+  left: 1.5px;
+}
+
+
+
