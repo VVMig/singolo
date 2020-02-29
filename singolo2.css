@@ -223,5 +223,10 @@
   margin-right: 4.5px;
 }
 
+.social-media:hover {
+  transition: 0.2s linear;
+  opacity: 0.7;
+}
+
 
 
