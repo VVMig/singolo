@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="singolo3.css">
   <title>Document</title>
 </head>
-<body>
+<body class="container">
   <section class="get-a-quote">
     <div class="get-a-quote__titles">
       <h2>Get a Quote</h2>
@@ -16,49 +17,53 @@
     </div>
     <div class="get-a-quote__contacts">
       <div class="get-a-quote__form">
-        <form action="">
-          <input type="text">
-          <input type="text">
-          <input type="text">
-          <textarea name="" id="" cols="30" rows="10"></textarea>
+        <form action="" class="form">
+          <input type="text" required class="input-contact" placeholder="Name (Required)">
+          <input type="email" required class="input-contact" placeholder="Email (Required)">
+          <input type="text" class="input-contact" placeholder="Subject">
+          <textarea cols="30" rows="12" placeholder="Describe your project in detail..."></textarea>
+          <input type="submit" value="Submit">
         </form>
       </div>
       <div class="get-a-quote__contact-info">
         <div class="get-a-quote__info-titles">
           <h3>Contact information</h3>
           <p>
-            Quisque hendrerit purus dapibus, ornare nibh vitae, viverra nibh. Fusce vitae aliquam tellus. Proin sit amet volutpat libero. Nulla sed nunc et tortor luctus faucibus. Morbi at aliquet turpis, et consequat felis. 
+            Quisque hendrerit purus dapibus, ornare nibh vitae, viver- ra nibh. Fusce vitae aliquam tellus. Proin sit amet volutpat libero. Nulla sed nunc et tortor luctus faucibus. Morbi at <span>aliquet turpis, et consequat felis.</span>
           </p>
         </div>
-        <div class="get-a-quote__contacts">
+        <div class="get-a-quote__info">
           <div class="location">
-            <img src="" alt="">
-            <p>
+            <img src="assets/images/location.png" alt="location">
+            <a href="#">
               Elm St. 14/05 Lost City
-            </p>
+            </a>
           </div>
           <div class="phone">
-            <img src="" alt="">
-            <p>
+            <img src="assets/images/phone_contacts.png" alt="phone">
+            <a href="tel:+">
               03528 331 86 35 
-            </p>
+            </a>
           </div>
           <div class="mail">
-            <img src="" alt="">
-            <p>
-              03528 331 86 35 
-            </p>
+            <img src="assets/images/mail.png" alt="mail">
+            <a href="mailto:">
+              info@singolo.com 
+            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <footer>
+  <footer class="footer">
     <div class="footer__copyright">
-
+      <p>&copy; Copyright 2013</p>
     </div>
     <div class="footer__social-media">
-      
+      <a href="#" class="footer__icons"><img src="assets/images/Facebook.png" alt="facebook"></a>
+      <a href="#" class="footer__icons"><img src="assets/images/Google.png" alt="google"></a>
+      <a href="#" class="footer__icons"><img src="assets/images/Twitter.png" alt="twitter"></a>
+      <a href="#" class="footer__icons"><img src="assets/images/LinkedIn.png" alt="linkedin"></a>
     </div>  
   </footer>
 </body>
