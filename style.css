@@ -209,7 +209,7 @@
 
 /*portfolio section*/
 .portfolio {
-  height: 869.5px;
+  height: 869px;
   width: 100%;
   background: #2d303a;
   padding: 69.5px 40px 0;
@@ -303,7 +303,7 @@
   width: 100%;
   background: #f2f2f2;
   padding: 60px 40px 0;
-  height: 734.5px;
+  height: 735px;
   border-bottom: 6px solid #ffffff;
 
 }
@@ -429,7 +429,9 @@
 
 /*get-a-quote section*/
 .get-a-quote {
-  height: 654px;
+  position: relative;
+  bottom: 1.5px;
+  height: 654.5px;
   width: 100%;
   background: #f06c64;
   padding: 59.5px 40px 0;
@@ -591,6 +593,8 @@ form textarea {
 /*footer*/
 
 .footer {
+  position: relative;
+  bottom: 1.5px;
   display: flex;
   justify-content: space-between;
   height: 76px;
