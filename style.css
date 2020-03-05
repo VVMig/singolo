@@ -207,6 +207,12 @@
   color: #767e9e;
 }
 
+
+.services__item:nth-child(6) .services__discribe h3,
+.services__item:nth-child(3) .services__discribe h3 {
+  position: relative;
+  left: 1px;
+}
 /*portfolio section*/
 .portfolio {
   height: 869px;
