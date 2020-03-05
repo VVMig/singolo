@@ -253,7 +253,7 @@
   margin-right: 7.5px;
 }
 
-.portfolio__itemgit:nth-child(4)  {
+.portfolio__item:nth-child(4)  {
   padding:0 5px;
 }
 
@@ -286,7 +286,7 @@
 }
 
 .portfolio__examples {
-  margin-top: 19px;
+  margin-top: 18px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -622,7 +622,7 @@ form textarea {
 
 .footer__social-media {
   position: relative;
-  bottom: 8px;
+  bottom: 7.4px;
   left: 1px;
 }
 
