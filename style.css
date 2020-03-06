@@ -119,6 +119,11 @@
   filter: brightness(0.9)
 }
 
+.arrow:hover {
+  transition: all 0.2s linear;
+  opacity: 0.7;
+}
+
 .arrow-right {
   top: 1.5px;
 }
@@ -164,6 +169,8 @@
   letter-spacing: 0px;
   font-weight: 300;
   color: #767e9e;
+  height: 59.2px;
+  overflow: hidden;
 }
 
 .services__list {
@@ -205,6 +212,10 @@
   letter-spacing: 0px;
   font-weight: 400;
   color: #767e9e;
+  max-width: 221px;
+  max-height: 63px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -369,6 +380,10 @@
   letter-spacing: -0.15px;
   text-align: justify;
   margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+  white-space: nowrap;
 }
 
 .about-us__discribe p {
@@ -378,7 +393,8 @@
   width: 310px;
   position: absolute;
   letter-spacing: -0.05px;
-
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .about-us__person:nth-child(1) .about-us__discribe p span {
