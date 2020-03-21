@@ -1,10 +1,40 @@
 window.onload=()=>{
+  burgerToggle();
   scrollToAnchor(); 
   slider();
   blackScreen();
   selectedPortfolioImage();
   shuffleImages();
   modalWindow();
+}
+
+const burgerToggle=()=> {
+  const burger=document.querySelector('.burger__menu');
+  const burgerMenu=document.querySelector('.menu__list');
+  burger.addEventListener('click', ()=>{
+    burger.classList.toggle('burger__active');
+    
+    if(burgerMenu.getAttribute('class')=='menu__list menu__list-disactive') {
+      openMenu(burgerMenu);
+    }
+    else if(burgerMenu.getAttribute('class')=='menu__list menu__list-active') {
+      closeMenu(burgerMenu);
+    }
+  });
+}
+
+const openMenu=(menu)=>{
+  menu.classList.remove('menu__list-disactive');
+  menu.classList.add('menu__list-active');
+}
+
+const closeMenu=(menu)=>{
+  menu.classList.remove('menu__list-active');
+  menu.addEventListener('animationend',()=>{
+    if(menu.getAttribute('class')=='menu__list') {
+      menu.classList.add('menu__list-disactive');
+    }
+  })
 }
 
 const scrollToAnchor = () => {
@@ -17,75 +47,52 @@ const scrollToAnchor = () => {
       }
       anchor.classList.toggle('active');
       scrollTo({
-        top: document.querySelector(`${anchor.getAttribute('href')}`).getBoundingClientRect().top+pageYOffset-95,
+        top: document.querySelector(`${anchor.getAttribute('href')}`).getBoundingClientRect().top+pageYOffset-document.querySelector('header').clientHeight,
         behavior: "smooth"
       })
     });
-    
   }
+
+  window.addEventListener('scroll',()=>{
+    
+  })
 };
 
 const slider = () => {
   const arrows = document.querySelectorAll(".slider__arrow");
   const slider1 = document.querySelector(".slider__first-slide");
   const slider2 = document.querySelector(".slider__second-slide");
-  slider2.style.left = `${-slider2.clientWidth}px`;
-  slider1.style.transition = "left 0.3s linear";
+  let slider=[slider1,slider2];
+  let current=0;
 
   arrows[1].addEventListener("click", () => {
-    if (getComputedStyle(slider2).left == "0px") {
-      slider1.style.transition = "none";
-      slider1.style.left = `${-slider1.clientWidth}px`;
-      slider2.style.left = `${slider2.clientWidth}px`;
-      slider1.style.transition = "left 0.3s linear";
-      slider1.style.left = "0px";
-      document.querySelector(".slider").style.borderBottom =
-        "6px solid #ea676b";
-      document.querySelector(".slider").style.transition =
-        "border-bottom 0.3s linear";
-    } else if (getComputedStyle(slider1).left == "0px") {
-      slider2.style.transition = "none";
-      slider2.style.left = `${-slider2.clientWidth}px`;
-      slider1.style.left = `${slider1.clientWidth}px`;
-      slider2.style.transition = "left 0.3s linear";
-      slider2.style.left = "0px";
-      document.querySelector(".slider").style.borderBottom =
-        "6px solid #648BF0";
-      document.querySelector(".slider").style.transition =
-        "border-bottom 0.3s linear";
-    }
+    slider[current+1==2?0:1].style.animation='appear-left 0.4s ease-in-out';
+    slider[current].style.animation='disappear-right 0.4s ease-in-out';
+    slider[current].style.transform='translateX(100%)';
+    slider[current+1==2?0:1].style.transform='translateX(0)';
+    current++;
+    if(current==2) current=0;
   });
   arrows[0].addEventListener("click", () => {
-    if (getComputedStyle(slider2).left == "0px") {
-      slider1.style.transition = "none";
-      slider1.style.left = `${slider1.clientWidth}px`;
-      slider2.style.left = `${-slider2.clientWidth}px`;
-      slider1.style.transition = "left 0.3s linear";
-      slider1.style.left = "0px";
-      document.querySelector(".slider").style.borderBottom =
-        "6px solid #ea676b";
-      document.querySelector(".slider").style.transition =
-        "border-bottom 0.3s linear";
-    } else if (getComputedStyle(slider1).left == "0px") {
-      slider2.style.transition = "none";
-      slider2.style.left = `${slider2.clientWidth}px`;
-      slider1.style.left = `${-slider1.clientWidth}px`;
-      slider2.style.transition = "left 0.3s linear";
-      slider2.style.left = "0px";
-      document.querySelector(".slider").style.borderBottom =
-        "6px solid #648BF0";
-      document.querySelector(".slider").style.transition =
-        "border-bottom 0.3s linear";
-    }
+    slider[current+1==2?0:1].style.animation='appear-right 0.4s ease-in-out';
+    slider[current].style.animation='disappear-left 0.4s ease-in-out';
+    slider[current].style.transform='translateX(-100%)';
+    slider[current+1==2?0:1].style.transform='translateX(0)';
+    current++;
+    if(current==2) current=0;
   });
 }
 
 const blackScreen=()=>{
   let iphones=document.querySelectorAll('.iphone');
-  document.querySelector('.slider__first-slide').addEventListener('click',(e)=>{
-    iphones[parseFloat(e.target.getAttribute('data-orientation'))].childNodes[1].classList.toggle('iphone-disactive');
-    iphones[parseFloat(e.target.getAttribute('data-orientation'))].childNodes[3].classList.toggle('iphone-disactive');
-  })
+  for (const iphone of iphones) {
+    iphone.addEventListener('click', (e)=>{
+      e.target.parentElement.childNodes[3].classList.toggle('iphone-disactive');
+      e.target.parentElement.childNodes[1].classList.toggle('iphone-disactive');
+
+
+    })
+  }
 }
 
 const selectedPortfolioImage=()=>{
@@ -206,9 +213,20 @@ const generateModal=(data)=>{
 
   document.body.append(overlay);
   btn.addEventListener('click',()=>{
-    overlay.remove()
+    overlay.remove();
+    resetInputs();
     document.body.style.overflow="visible";
   });
+}
+
+const resetInputs=()=>{
+  let input=document.querySelectorAll('.form input');
+  let discribe=document.querySelector('.form textarea');
+
+  input.forEach(e=>{
+    e.value='';
+  })
+  discribe.value='';
 }
 
 const getInputsInfo=(e)=> {
