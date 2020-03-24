@@ -6,7 +6,7 @@ window.onload=()=>{
   selectedPortfolioImage();
   shuffleImages();
   modalWindow();
-}
+};
 
 const burgerToggle=()=> {
   const burger=document.querySelector('.burger__menu');
@@ -21,12 +21,12 @@ const burgerToggle=()=> {
       closeMenu(burgerMenu);
     }
   });
-}
+};
 
 const openMenu=(menu)=>{
   menu.classList.remove('menu__list-disactive');
   menu.classList.add('menu__list-active');
-}
+};
 
 const closeMenu=(menu)=>{
   menu.classList.remove('menu__list-active');
@@ -35,64 +35,134 @@ const closeMenu=(menu)=>{
       menu.classList.add('menu__list-disactive');
     }
   })
-}
+};
 
 const scrollToAnchor = () => {
   const anchors = document.querySelectorAll('.header .menu__link[href*="#"]');
+  const sections=document.querySelectorAll('[id]');
+  const header=document.querySelector('header').clientHeight;
+
   for (const anchor of anchors) {
     anchor.addEventListener("click", e => {
       e.preventDefault();
-      for (const anchor of anchors) {
-        anchor.classList.remove('active');
-      }
-      anchor.classList.toggle('active');
+      switchActiveMenu(anchor);
       scrollTo({
-        top: document.querySelector(`${anchor.getAttribute('href')}`).getBoundingClientRect().top+pageYOffset-document.querySelector('header').clientHeight,
+        top: document.querySelector(`${anchor.getAttribute('href')}`).offsetTop-header+1,
         behavior: "smooth"
       })
     });
+    
   }
 
   window.addEventListener('scroll',()=>{
-    
+    sections.forEach(e=>{
+      if(e.offsetTop-header<=window.scrollY && window.scrollY<e.offsetTop+e.offsetHeight-header) {
+        anchors.forEach(el=>{
+          if(el.getAttribute('href')===`#${e.getAttribute('id')}`) 
+           switchActiveMenu(el);
+        })
+      }
+      if(e.getAttribute('id')==='portfolio') {
+        if(e.offsetTop-header<=window.scrollY && window.scrollY<e.offsetTop+e.offsetHeight-header){
+          anchors.forEach(el=>{
+            if(el.getAttribute('href')===`#${e.getAttribute('id')}`) 
+             switchActiveMenu(el);
+          })
+        }
+      }
+    })
   })
 };
 
+const switchActiveMenu=(active)=>{
+  const anchors = document.querySelectorAll('.header .menu__link[href*="#"]');
+
+  for (const anchor of anchors) {
+    anchor.classList.remove('active');
+  }
+  active.classList.add('active');
+}
+
 const slider = () => {
   const arrows = document.querySelectorAll(".slider__arrow");
-  const slider1 = document.querySelector(".slider__first-slide");
-  const slider2 = document.querySelector(".slider__second-slide");
-  let slider=[slider1,slider2];
-  let current=0;
+  const slides= document.querySelectorAll('.slider__item');
+  const border= document.querySelector('.slider');
 
-  arrows[1].addEventListener("click", () => {
-    slider[current+1==2?0:1].style.animation='appear-left 0.4s ease-in-out';
-    slider[current].style.animation='disappear-right 0.4s ease-in-out';
-    slider[current].style.transform='translateX(100%)';
-    slider[current+1==2?0:1].style.transform='translateX(0)';
-    current++;
-    if(current==2) current=0;
-  });
-  arrows[0].addEventListener("click", () => {
-    slider[current+1==2?0:1].style.animation='appear-right 0.4s ease-in-out';
-    slider[current].style.animation='disappear-left 0.4s ease-in-out';
-    slider[current].style.transform='translateX(-100%)';
-    slider[current+1==2?0:1].style.transform='translateX(0)';
-    current++;
-    if(current==2) current=0;
-  });
+  let current=0;
+  hideSlides(slides,current);
+
+  arrows[0].addEventListener('click',(e)=> {
+    slides[current].style.animation='disappear-left 0.3s ease-in-out';
+    if(current+1==slides.length) slides[current+1<slides.length?current+1:0].classList.remove('slider__item-disactive');
+    slides[current+1<slides.length?current+1:0].classList.remove('slider__item-disactive-phone');
+    slides[current+1<slides.length?current+1:0].style.animation='appear-right 0.3s ease-in-out';
+
+    slides[current].addEventListener('animationend',(e)=>{
+      hideSlides(slides);
+      current++;
+
+      if(current==slides.length) current=0;
+      
+      if(slides[current].getAttribute('data-color')=='blue') {
+        border.style.borderColor='#648BF0';
+      }
+      else border.style.borderColor='#EA676B';
+
+      hideSlides(slides,current);
+    },{once: true});
+
+  })
+
+  arrows[1].addEventListener('click',(e)=> {
+    slides[current].style.animation='disappear-right 0.3s ease-in-out';
+    if(current+1==slides.length) slides[current+1<slides.length?current+1:0].classList.remove('slider__item-disactive');
+    slides[current+1<slides.length?current+1:0].classList.remove('slider__item-disactive-phone');
+    slides[current+1<slides.length?current+1:0].style.animation='appear-left 0.3s ease-in-out';
+
+    slides[current].addEventListener('animationend',(e)=>{
+      hideSlides(slides);
+      current++;
+
+      if(current==slides.length) current=0;
+
+      if(slides[current].getAttribute('data-color')=='blue') {
+        border.style.borderColor='#648BF0';
+      }
+      else border.style.borderColor='#EA676B';
+
+      hideSlides(slides,current);
+    },{once: true});
+  })
+
+}
+
+const hideSlides=(slides, current)=> {
+  slides.forEach(e=>{
+    if(e.getAttribute('data-color')==='red') e.classList.add('slider__item-disactive');
+    else e.classList.add('slider__item-disactive-phone');
+  })
+  if(current!==undefined)
+    if(slides[current].getAttribute('data-color')==='red') slides[current].classList.remove('slider__item-disactive');
+    else slides[current].classList.remove('slider__item-disactive-phone');
 }
 
 const blackScreen=()=>{
-  let iphones=document.querySelectorAll('.iphone');
-  for (const iphone of iphones) {
-    iphone.addEventListener('click', (e)=>{
-      e.target.parentElement.childNodes[3].classList.toggle('iphone-disactive');
-      e.target.parentElement.childNodes[1].classList.toggle('iphone-disactive');
+  const phoneVertical=document.querySelectorAll('.phone-vertical');
+  const phoneHorizontal=document.querySelectorAll('.phone-horizontal');
 
-
+  phoneVertical.forEach(e=>{
+    e.addEventListener('click', (el)=>{
+      phoneVertical.forEach(phone=>phone.classList.remove('iphone-disactive'));
+      e.classList.toggle('iphone-disactive');
     })
-  }
+  })
+
+  phoneHorizontal.forEach(e=>{
+    e.addEventListener('click', (el)=>{
+      phoneHorizontal.forEach(phone=>phone.classList.remove('iphone-disactive'));
+      e.classList.toggle('iphone-disactive');
+    })
+  })
 }
 
 const selectedPortfolioImage=()=>{
@@ -220,7 +290,7 @@ const generateModal=(data)=>{
 }
 
 const resetInputs=()=>{
-  let input=document.querySelectorAll('.form input');
+  let input=document.querySelectorAll('.form input.input-contact');
   let discribe=document.querySelector('.form textarea');
 
   input.forEach(e=>{
