@@ -97,88 +97,67 @@
 }
 /*slider*/
 .slider {
-  width: 100%;
-  background: #ffffff;
+  background: #F06C64;
+  border-bottom: 6px solid #EA676B;
   display: flex;
-  border-bottom: 6px solid #ea676b;
-  align-items: center;
   justify-content: space-between;
+  max-width: 100%;
+  padding: 0 40px;
+  width: 100%;
+  align-items: center;
+  flex-wrap: nowrap;
   position: relative;
+  transition: border-color 0.3s linear;
   overflow: hidden;
 }
 
-.slider__second-slide {
+.slider__item:nth-child(n+2) {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  transition: transform 0.2s ease-in-out;
-}
-
-.slider__second-slide img {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-}
-
-.slider__first-slide {
-  background: #f06c64;
-  display: flex;
-  width: 100%;
-  height: 100%;
   position: absolute;
   left: 0;
   top: 0;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 11%;
-  transition: transform 0.2s ease-in-out;
+  height: 100%;
 }
 
-.slider__iphone-vertical {
-  margin-right: 7%;
-}
-
-.slider__first-slide img {
-  max-width: 100%;
+.slider__item:nth-child(n+2) img {
+  height: 100%;
   width: 100%;
-  height: auto;
+}
+
+.slider__item-disactive {
+  opacity: 0;
+}
+
+.slider__item-disactive-phone {
+  display: none;
+}
+
+.slider__arrow {
+  cursor: pointer;
+  z-index: 2;
+}
+
+.iphones {
+  display: flex;
+  padding: 53px 0 55px;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .iphone-disactive {
   display: none;
 }
 
-.slider__arrow {
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.arrow {
-  cursor: pointer;
-  filter: brightness(0.9)
-}
-
-.arrow:hover {
-  transition: all 0.2s linear;
-  opacity: 0.7;
-}
-
-.arrow-right {
-  right: 4%;
-}
-
-.arrow-left {
-  left: 4%;
-  transform:  rotate(180deg) translateY(65%);
-}
+.phone-vertical{
+  margin-right: 73px;
+} 
 
 /*services*/
 .services {
   width: 100%;
   background: #f2f2f2;
-  padding: 60px 40px 52px;
+  padding: 60px 40px 64px;
   display: flex;
   border-bottom: 6px solid #ffffff;
   flex-direction: column;
@@ -219,6 +198,7 @@
   ;
   padding: 5% 0 0 0;
   column-gap: 20px;
+  row-gap: 25px;
   justify-items: center;
 }
 
@@ -228,7 +208,6 @@
   width: 100%;
   text-overflow: clip;
   overflow: hidden;
-  margin-bottom: 30px;
 }
 
 .services__image {
@@ -350,6 +329,11 @@
 
 .portfolio__image {
   cursor: pointer;
+}
+
+.portfolio__image:hover {
+  transition: 0.2s linear;
+  filter: contrast(160%);
 }
 
 .portfolio__image:nth-child(n+13) {
@@ -533,6 +517,7 @@ form input:nth-child(5) {
   border-radius: 5px;
   color: #886A30;
   font-size: 14px;
+  text-transform: uppercase;
 }
 
 form input:focus {
@@ -698,7 +683,7 @@ form textarea {
   font-weight: bold;
   padding: 10px 10px;
   max-height: 500px;
-  width: 500px;
+  width: 70%;
   background: rgb(255, 226, 226);
   border-radius: 20px;
   position: relative;
@@ -718,9 +703,6 @@ form textarea {
   background: rgb(255, 226, 226);
 }
 
-.modal-discribe {
-  min-height: 250px;
-}
 
 .modal-window>button {
   outline: none;
@@ -758,6 +740,18 @@ form textarea {
 }
 
 @media screen and (max-width: 1019px) {
+  .phone-vertical{
+    margin-right: 54px;
+  }  
+
+  .slider {
+    padding: 0 26px;
+  }
+
+  .iphones {
+    padding: 41px 0 47px;
+  }
+
   .services__list {
     margin-top: 28px;
     display: grid;
@@ -767,11 +761,8 @@ form textarea {
     "a a"
     ;
     padding: 28px 0 0 0;
-    row-gap: 53px;
-  }
-
-  .services__item {
-    margin-bottom: 39px;
+    column-gap: 53px;
+    row-gap: 39px;
   }
   
   .portfolio__examples {
@@ -916,6 +907,18 @@ form textarea {
     transform: rotate(90deg);
   }
 
+  .slider {
+    padding: 0 10px;
+  }
+
+  .iphones {
+    padding: 20px 0 23px;
+  }
+
+  .phone-vertical{
+    margin-right: 26px;
+  } 
+
   .services__list {
     display: grid;
     grid-template-areas: 
@@ -927,7 +930,7 @@ form textarea {
     "a"
     ;
     padding: 25px 0 0 0;
-    row-gap: 0;
+    row-gap: 17px;
     column-gap: 53px;
     margin-top: 25px;
   }
@@ -1005,14 +1008,47 @@ form textarea {
   }  
 
   .footer {
+    padding: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
+  }
+
+  .footer__social-media {
+    position: unset;
   }
 }
 
 @media screen and (max-width: 374px) {
+  .slider {
+    padding: 0 5px;
+  }
+
+  .iphones>picture:nth-child(1) {
+    margin-right: 2px;
+  } 
+
   .services__list {
     padding: 25px 0 0 0;
+  }
+
+  .portfolio__image{
+    width: 100%;
+    height: auto;
+  }
+
+  .portfolio__image-noborder {
+    width: 100%;
+    height: auto;
+  }
+
+  .portfolio__image-border {
+    width: 100%;
+    height: auto;
+  }
+
+  .portfolio__item {
+    margin-bottom: 5px;
   }
 }
 
