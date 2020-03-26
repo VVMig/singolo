@@ -968,6 +968,10 @@ form textarea {
     max-height: 127px;
   }
 
+  .portfolio__image:nth-child(n+9) {
+    display: none;
+  }
+
   .about-us {
     height: auto;
   }
