@@ -360,7 +360,6 @@
   background: #f2f2f2;
   padding: 60px 40px 73px;
   border-bottom: 5px solid #ffffff;
-
 }
 
 .about-us__header {
@@ -754,6 +753,14 @@ form textarea {
     padding: 41px 0 47px;
   }
 
+  .services {
+    padding: 39px 40px 64px;
+    display: flex;
+    border-bottom: 6px solid #ffffff;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
   .services__list {
     margin-top: 28px;
     display: grid;
@@ -765,6 +772,10 @@ form textarea {
     padding: 28px 0 0 0;
     column-gap: 53px;
     row-gap: 39px;
+  }
+
+  .portfolio {
+    padding: 59px 40px 0;
   }
   
   .portfolio__examples {
@@ -791,17 +802,28 @@ form textarea {
     height: 183.76px;
   }
 
+  .about-us {
+    width: 100%;
+    background: #f2f2f2;
+    padding: 52px 40px 73px;
+    border-bottom: 5px solid #ffffff;
+  }
+
   .about-us__stuff {
     margin-top: 28px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 15px;
   }
+
+  .get-a-quote {
+    padding: 53px 42px 39.21px 37px;
+  }
 }
 
 @media (max-width: 767px) {
   .header {
-    padding: 0 25px;
+    padding: 0 20px;
     height: 71px;
     border: 0;
   }
@@ -921,6 +943,10 @@ form textarea {
     margin-right: 26px;
   } 
 
+  .services {
+    padding: 25px 30px 0px;
+  }
+
   .services__list {
     display: grid;
     grid-template-areas: 
@@ -942,7 +968,7 @@ form textarea {
   }
 
   .portfolio {
-    padding: 69.5px 30px 0;
+    padding: 42px 30px 0;
   }
 
   .portfolio__examples {
@@ -976,6 +1002,7 @@ form textarea {
 
   .about-us {
     height: auto;
+    padding: 33px 30px 45px;
   }
 
   .about-us__stuff {
@@ -989,6 +1016,18 @@ form textarea {
 
   .about-us__discribe {
     margin-bottom: 9px;
+  }
+
+  .get-a-quote {
+
+    border-bottom: 0px solid #ea676b;
+    padding: 45px 30px 39.21px;
+  }
+
+  .get-a-quote__contact-info {
+    margin-left: 21px;
+    margin-top: 32px;
+    max-width: 300px;
   }
 
   .get-a-quote__contacts {
